@@ -1,6 +1,10 @@
 ## deja vu from yesterday!
-
+library(tidyverse)
+library(here)
 ## create a data frame of your installed packages
+pkg <- installed.packages() %>%
+  as_tibble() %>%
+  select(Package, LibPath, Version, Priority, Built)
 
 ## keep the variables
 ##   * Package
@@ -8,6 +12,9 @@
 ##   * Version
 ##   * Priority
 ##   * Built
+
+
+write_csv(x = pkg, path = here("data", "installed-packages.csv"))
 
 ## write it to data/installed-packages.csv
 ## YES overwrite the file that is there now
